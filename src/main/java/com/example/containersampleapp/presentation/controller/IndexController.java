@@ -16,10 +16,10 @@ public class IndexController {
 
     @GetMapping("/")
     public ModelAndView get(ModelAndView mav) {
-        log.info("ログ Access to IndexController / !!");
-        log.info(sampleEnv);
-        mav.addObject("sampleEnv", sampleEnv);
-        mav.setViewName("index");
-        return mav;
+    log.info("ログ Access to IndexController / !!");
+    log.info(sampleEnv);
+    mav.addObject("sampleEnv", sampleEnv);
+    mav.setViewName("index");
+    return mav;
     }
 }

@@ -3,6 +3,7 @@ package com.example.containersampleapp.business.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.example.containersampleapp.business.TaskService;
 import com.example.containersampleapp.business.model.Task;
@@ -66,5 +67,10 @@ public class TaskServiceImpl implements TaskService {
 
     Long getMaxId() {
         return taskList.stream().mapToLong(Task::getId).max().orElse(0) + 1L;
+    }
+
+    @Override
+    public List<Task> search(String name) {
+        return taskList.stream().filter(x -> x.getName().matches(".*" + name + ".*")).collect(Collectors.toList());
     }
 }

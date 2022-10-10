@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @Slf4j
 public class TaskController {
-    
+
     private final TaskService service;
 
     @ApiOperation(value = "タスクを全件取得します")
@@ -31,6 +32,13 @@ public class TaskController {
     List<Task> findAll() {
         log.info("findAll");
         return service.findAll();
+    }
+
+    @ApiOperation(value = "タスクを検索します")
+    @GetMapping("/search")
+    List<Task> search(@RequestParam String name) {
+        log.info("search");
+        return service.search(name);
     }
 
     @ApiOperation(value = "タスクを登録します")
